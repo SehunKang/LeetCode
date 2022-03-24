@@ -19,7 +19,3 @@ class Solution {
         return result
     }
 }
-
-let c = Solution()
-
-c.romanToInt("MCMXCIV")
