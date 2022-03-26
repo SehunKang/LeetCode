@@ -10,13 +10,13 @@
  */
 class Solution {
     func middleNode(_ head: ListNode?) -> ListNode? {
-        var nodes: [ListNode] = []
-        var head = head
-        
-        while head != nil {
-            nodes.append(head!)
-            head = head?.next
+        var slowHead = head
+        var fastHead = head?.next
+        while slowHead != nil && fastHead != nil {
+            slowHead = slowHead?.next
+            fastHead = fastHead?.next?.next
         }
-        return nodes[nodes.count / 2]
+        return slowHead
     }
 }
+
