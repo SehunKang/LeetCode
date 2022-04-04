@@ -15,22 +15,20 @@
  */
 
 class Solution {
-    private func dfs(_ root: Node?) {
-        if root == nil {return}
+    
+    func connect(_ root: Node?) -> Node? {
+        if root == nil { return root }
         
         if let left = root?.left {
             left.next = root?.right
-            dfs(left)
+            connect(left)
         }
         
         if let right = root?.right {
             right.next = root?.next?.left
-            dfs(right)
+            connect(right)
         }
-    }
-    
-    func connect(_ root: Node?) -> Node? {
-        dfs(root)
+        
         return root
     }
 }
