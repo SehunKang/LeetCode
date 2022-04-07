@@ -9,17 +9,16 @@
  * }
  */
 class Solution {
-    func reverseList(_ head: ListNode?) -> ListNode? {
-        var head = head
-        var newHead: ListNode? = nil
-        
-        while head != nil {
-            let bufferForNextHead = head?.next
-            head?.next = newHead
-            newHead = head
-            head = bufferForNextHead
+    private func reverse(_ head: ListNode?, _ newHead: ListNode?) -> ListNode? {
+        if head == nil {
+            return newHead
         }
-        
-        return newHead
+        let new = head?.next
+        head?.next = newHead
+        return reverse(new, head)
+    }
+    
+    func reverseList(_ head: ListNode?) -> ListNode? {
+        return reverse(head, nil)
     }
 }
