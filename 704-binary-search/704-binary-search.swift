@@ -1,20 +1,20 @@
 class Solution {
     func search(_ nums: [Int], _ target: Int) -> Int {
-        var lo = 0
-        var hi = nums.count
-        var mid = hi / 2
+        var low = 0
+        var high = nums.count - 1
         
-        while lo < hi {
+        while low <= high {
+            let mid = high - ((high - low) / 2)
+            print(high, low, mid)
             if nums[mid] == target {
                 return mid
-            } else if nums[mid] > target {
-                hi = mid
-                mid = hi / 2
             } else if nums[mid] < target {
-                lo = mid + 1
-                mid = mid + ((hi - mid) / 2)
+                low = mid + 1
+            } else {
+                high = mid - 1
             }
         }
+        
         return -1
     }
 }
