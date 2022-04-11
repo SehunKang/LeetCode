@@ -1,25 +1,24 @@
 class Solution {
+    
     func searchInsert(_ nums: [Int], _ target: Int) -> Int {
-        var lo = 0
-        var hi = nums.count - 1
+        var low = 0
+        var high = nums.count - 1
         
-        while hi - lo > 1 {
-            let mid = lo + (hi - lo) / 2
+        while high > low {
+            let mid = high - (high - low) / 2
             if nums[mid] == target {
                 return mid
             } else if nums[mid] > target {
-                hi = mid
+                high = mid - 1
             } else {
-                lo = mid
+                low = mid + 1
             }
         }
-        
-        if target > nums[hi] {
-            return hi + 1
-        } else if target > nums[lo] {
-            return lo + 1
+        if target > nums[high] {
+            return high + 1
         } else {
-            return lo
+            return high
         }
+        
     }
 }
