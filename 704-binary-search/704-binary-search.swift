@@ -5,7 +5,6 @@ class Solution {
         
         while low <= high {
             let mid = high - ((high - low) / 2)
-            print(high, low, mid)
             if nums[mid] == target {
                 return mid
             } else if nums[mid] < target {
