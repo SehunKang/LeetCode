@@ -1,14 +1,14 @@
 class Solution {
     func moveZeroes(_ nums: inout [Int]) {
-        var snowball = 0
-        for i in nums.indices {
-            if nums[i] == 0 {
-                snowball += 1
-            } else if snowball > 0 {
-                let n = nums[i]
-                nums[i] = 0
-                nums[i - snowball] = n
+        var count = 0
+        nums = nums.filter {num in
+            if num == 0 {
+                count += 1
+                return false
+            } else {
+                return true
             }
         }
+        nums += Array<Int>.init(repeating: 0, count: count)
     }
 }
