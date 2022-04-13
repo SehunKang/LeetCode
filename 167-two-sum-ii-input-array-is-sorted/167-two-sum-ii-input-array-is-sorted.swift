@@ -1,14 +1,17 @@
 class Solution {
     func twoSum(_ numbers: [Int], _ target: Int) -> [Int] {
-        var l = 0
-        var r = numbers.count - 1
-        while numbers[l] + numbers[r] != target {
-            if numbers[l] + numbers[r] < target {
-                l += 1
-            } else {
-                r -= 1
+        var left = 0
+        var right = numbers.count - 1
+        
+        while true {
+            let sum = numbers[left] + numbers[right]
+            if  sum == target {
+                return [left + 1, right + 1]
+            } else if sum > target {
+                right -= 1
+            } else if sum < target {
+                left += 1
             }
         }
-        return [l + 1, r + 1]
     }
 }
