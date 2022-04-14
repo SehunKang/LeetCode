@@ -1,11 +1,10 @@
 class Solution {
     func reverseString(_ s: inout [Character]) {
-        var left = 0
-        while left < s.count - 1 - left {
-            let temp = s[left]
-            s[left] = s[s.count - 1 - left]
-            s[s.count - 1 - left] = temp
-            left += 1
+        if s.count == 1 {return}
+        for i in 0...(s.count / 2) - 1 {
+            let temp = s[i]
+            s[i] = s[s.count - 1 - i]
+            s[s.count - 1 - i] = temp
         }
     }
 }
