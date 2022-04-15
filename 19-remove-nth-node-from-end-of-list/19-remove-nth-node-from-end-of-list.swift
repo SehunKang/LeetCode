@@ -10,20 +10,25 @@
  */
 class Solution {
     func removeNthFromEnd(_ head: ListNode?, _ n: Int) -> ListNode? {
-        var start = ListNode(0, head)
-        var slow: ListNode? = start
-        var fast: ListNode? = start
+        let newNode: ListNode? = ListNode(0, head)
+        var fast = newNode
+        var slow = newNode
         
         for _ in 1...n {
             fast = fast?.next
         }
+        var prev: ListNode?
         
-        while fast?.next != nil {
+        while fast != nil {
             fast = fast?.next
+            prev = slow
             slow = slow?.next
+            
         }
         
-        slow?.next = slow?.next?.next
-        return start.next
+        prev?.next = slow?.next
+        slow?.next = nil
+        
+        return newNode?.next
     }
 }
