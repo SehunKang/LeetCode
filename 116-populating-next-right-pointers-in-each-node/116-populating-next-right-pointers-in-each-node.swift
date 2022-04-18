@@ -15,10 +15,8 @@
  */
 
 class Solution {
-    
     func connect(_ root: Node?) -> Node? {
-        if root == nil { return root }
-        
+        if root == nil { return root}
         if let left = root?.left {
             left.next = root?.right
             connect(left)
@@ -28,7 +26,7 @@ class Solution {
             right.next = root?.next?.left
             connect(right)
         }
-        
+
         return root
     }
 }
