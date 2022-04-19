@@ -8,8 +8,8 @@ class Solution {
         for i in 0...columnLength - 1 {
             for j in 0...rowLength - 1 {
                 if mat[i][j] != 0 {
-                    var top = columnLength + rowLength
-                    var left = columnLength + rowLength
+                    var top = columnLength + rowLength - 2
+                    var left = columnLength + rowLength - 2
                     if i != 0 {
                         top = mat[i - 1][j]
                     }
