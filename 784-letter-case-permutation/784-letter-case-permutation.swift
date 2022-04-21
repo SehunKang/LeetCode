@@ -1,22 +1,19 @@
 class Solution {
     private func task(index: Int ,currentStr: String, chars: [Character], result: inout [String]) {
         
-        if currentStr.count == chars.count {
+        if index == chars.count {
             result.append(currentStr)
             return
         }
         
-        if index > chars.count - 1 { return}
         
-        for i in index...chars.count - 1 {
-            if chars[i].isLetter {
-                task(index: i + 1, currentStr: currentStr + chars[i].lowercased(), chars: chars, result: &result)
-                task(index: i + 1, currentStr: currentStr + chars[i].uppercased(), chars: chars, result: &result)
-            } else {
-                task(index: i + 1, currentStr: currentStr + String(chars[i]), chars: chars, result: &result)
-            }
-            
+        if chars[index].isLetter {
+            task(index: index + 1, currentStr: currentStr + chars[index].lowercased(), chars: chars, result: &result)
+            task(index: index + 1, currentStr: currentStr + chars[index].uppercased(), chars: chars, result: &result)
+        } else {
+            task(index: index + 1, currentStr: currentStr + String(chars[index]), chars: chars, result: &result)
         }
+        
         
     }
     
