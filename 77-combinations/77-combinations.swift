@@ -1,28 +1,26 @@
 class Solution {
-    private func recurse( result: inout [[Int]], element: inout [Int], start: Int, n: Int, k: Int) {
-        if k == 0 {
+    private func task(maxIndex: Int, startIndex: Int, k: Int, result: inout [[Int]], element: inout [Int]) {
+        if element.count == k {
             result.append(element)
             return
         }
-        
-        if start > n {
-            return
-        }
+        if startIndex > maxIndex { return}
         
         
-        for i in start...n {
+        for i in startIndex...maxIndex {
             element.append(i)
-            recurse(result: &result, element: &element, start: i + 1, n: n, k: k - 1)
+            task(maxIndex: maxIndex, startIndex: i + 1, k: k, result: &result, element: &element)
             element.removeLast()
         }
         
     }
     
     func combine(_ n: Int, _ k: Int) -> [[Int]] {
-        var result: [[Int]] = []
-        var element: [Int] = []
+        var element = [Int]()
+        var result = [[Int]]()
         
-        recurse(result: &result, element: &element, start: 1, n: n, k: k)
+        task(maxIndex: n, startIndex: 1, k: k, result: &result, element: &element)
         return result
+        
     }
 }
