@@ -1,15 +1,15 @@
 class Solution {
-    private func task(maxIndex: Int, result: inout [[Int]], element: inout [Int], nums: [Int]){
+    private func task(maxIndex: Int, element: inout [Int], nums: [Int], result: ([Int]) -> (Void) ){
         
         if element.count - 1 == maxIndex {
-            result.append(element)
+            result(element)
             return
         }
         
         for i in 0...maxIndex {
             if element.contains(nums[i]) { continue }
             element.append(nums[i])
-            task(maxIndex: maxIndex, result: &result, element: &element, nums: nums)
+            task(maxIndex: maxIndex, element: &element, nums: nums, result: result)
             element.removeLast()
         }
         
@@ -18,7 +18,9 @@ class Solution {
         var result = [[Int]]()
         var element = [Int]()
         
-        task(maxIndex: nums.count - 1, result: &result, element: &element, nums: nums)
+        task(maxIndex: nums.count - 1,element: &element, nums: nums) {
+            result.append($0)
+        }
         
         return result
         
