@@ -1,26 +1,25 @@
-
 class Solution {
-    
-    func backTrack(result: inout [[Int]], element: inout [Int], nums: [Int]) {
-        if element.count == nums.count {
+    private func task(maxIndex: Int, result: inout [[Int]], element: inout [Int], nums: [Int]){
+        
+        if element.count - 1 == maxIndex {
             result.append(element)
             return
         }
         
-        for i in nums.indices {
+        for i in 0...maxIndex {
             if element.contains(nums[i]) { continue }
-            
             element.append(nums[i])
-            backTrack(result: &result, element: &element, nums: nums)
+            task(maxIndex: maxIndex, result: &result, element: &element, nums: nums)
             element.removeLast()
         }
         
     }
-    
     func permute(_ nums: [Int]) -> [[Int]] {
         var result = [[Int]]()
         var element = [Int]()
-        backTrack(result: &result, element: &element, nums: nums)
+        
+        task(maxIndex: nums.count - 1, result: &result, element: &element, nums: nums)
+        
         return result
         
     }
