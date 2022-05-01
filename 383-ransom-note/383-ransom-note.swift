@@ -1,13 +1,23 @@
 class Solution {
     func canConstruct(_ ransomNote: String, _ magazine: String) -> Bool {
-        var magazine = magazine
-        for i in ransomNote {
-            if magazine.contains(i) {
-                magazine.remove(at: magazine.firstIndex(of: i)!)
-                continue
+        var map: [String.Element: Int] = [:]
+        
+        for char in magazine {
+            if map[char] == nil {
+                map[char] = 1
+            } else {
+                map[char]! += 1
             }
-            return false
         }
+        
+        for char in ransomNote {
+            if map[char] == nil || map[char] == 0 {
+                return false
+            } else {
+                map[char]! -= 1
+            }
+        }
+        
         return true
     }
 }
