@@ -15,25 +15,15 @@
  */
 class Solution {
     func searchBST(_ root: TreeNode?, _ val: Int) -> TreeNode? {
-                var stack = [root]
+        guard let node = root else {return nil}
         
-        while !stack.isEmpty {
-            let count = stack.count
-            
-            for _ in 1...count {
-                guard let node = stack.removeFirst() else {return nil}
-                if node.val == val {
-                    return node
-                }
-                if node.left != nil {
-                    stack.append(node.left)
-                }
-                if node.right != nil {
-                    stack.append(node.right)
-                }
-            }
+        if node.val == val {return root}
+        
+        if node.val > val {
+            return searchBST(node.left, val)
+        } else {
+            return searchBST(node.right, val)
         }
         return nil
-
     }
 }
