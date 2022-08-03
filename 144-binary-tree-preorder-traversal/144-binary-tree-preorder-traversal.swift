@@ -14,22 +14,24 @@
  * }
  */
 class Solution {
+    
+        private func recurse(result: inout [Int], node: TreeNode?) {
+        guard let node = node else {return}
+                result.append(node.val)
+
+        recurse(result: &result, node: node.left)
+        
+        
+        recurse(result: &result, node: node.right)
+    }
+
     func preorderTraversal(_ root: TreeNode?) -> [Int] {
-        var stack = [TreeNode?]()
         var result = [Int]()
         
-        stack.append(root)
+        recurse(result: &result, node: root)
         
-        while !stack.isEmpty {
-            guard let node = stack.removeLast() else {return []}
-            result.append(node.val)
-            if node.right != nil {
-                stack.append(node.right)
-            }
-            if node.left != nil {
-                stack.append(node.left)
-            }
-        }
         return result
+
     }
+
 }
